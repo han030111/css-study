@@ -1,0 +1,26 @@
+.cont{
+    width: 40%;
+    height: 100%;
+
+}
+.grid{
+    height: 100%;
+        display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
+    grid-template-rows: 1fr 1fr;
+    gap: 1px;
+    place-items: center;
+}
+body{
+    height: 100vh;
+}
+.box{
+    width: 100px;
+    height: 100px;
+    background-color: tomato;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
