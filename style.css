@@ -1,26 +1,34 @@
 .cont{
-    width: 40%;
+    width: 100%;
     height: 100%;
 
 }
 .grid{
     height: 100%;
+    width: 100%;
         display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
-    grid-template-rows: 1fr 1fr;
-    gap: 1px;
-    place-items: center;
+    grid-template-columns:repeat(5,1fr) ;
+    grid-template-rows: repeat(3,1fr);
+    gap: 3px;
 }
 body{
     height: 100vh;
 }
 .box{
-    width: 100px;
-    height: 100px;
-    background-color: tomato;
-}
-body{
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    background-color: tomato;
+    color: white;
+}
+.first{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    background-color: tomato;
+    color: white;
+    grid-template-rows: 1fr 1fr;
+    gap: 4px;
+    grid-template-columns: 1.5fr 1fr;
+    
 }

@@ -1,0 +1,79 @@
+.grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+grid-template-rows: 1fr 1fr;
+width: 100%;
+height: 100%;
+margin: 0px;
+padding: 0px;
+    color: white;
+    font-family:serif;
+    font-weight: bold;
+    
+    
+}
+.gridblock1{
+    background-color:#dae8de;
+    font-size: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: tomato;
+}
+.gridblock2{
+    background-color:green;
+    font-size: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+body {
+    height: 100vh;
+    margin: 0px;
+padding: 0px;
+}
+.gridblock3{
+    background-color:tomato;
+    font-size: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+}
+.minigrid{
+    display: grid;
+grid-template-columns: 1fr 1fr;
+grid-template-rows: 1fr 1fr;
+}
+.minigridblock1{
+    background-color: pink;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    color: tomato;
+    justify-content: center;
+}
+.minigridblock2{
+    background-color:mediumslateblue;
+    display: flex;
+    align-items: center;
+    font-size: 40px;
+    justify-content: center;
+}
+.minigridblock3{
+    background-color:gold;
+    display: flex;
+    font-size: 40px;
+    color: tomato;
+    align-items: center;
+    justify-content: center;
+}
+.minigridblock4{
+    background-color:coral;
+    display: flex;
+    font-size: 40px;
+    align-items: center;
+    justify-content: center;
+}
