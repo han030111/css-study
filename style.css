@@ -3,6 +3,22 @@
     height: 100%;
 
 }
+body {
+    display: flex;
+}
+div img{
+    height: 100%;
+
+}
+.fix{
+    position: fixed;
+    width: 250vh;
+    height: 100px;
+    display: flex;
+    
+    justify-content: center;
+    background-color: aliceblue;
+}
 .grid{
     height: 100%;
     width: 100%;

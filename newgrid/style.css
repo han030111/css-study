@@ -1,0 +1,43 @@
+body {
+    height: 100vh;
+    margin: 0px;
+
+}
+.top {
+    height: 10%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    gap: 10px;
+    background-color: black;
+}
+.mini {
+    background-color: white;
+
+}
+.grid {
+    background-color: black;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(3,1fr);
+    width: 100%;
+    height: 90%;
+    gap: 10px;
+
+}
+.box {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.box img {
+    margin: auto;
+    
+}
+.minibox {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
