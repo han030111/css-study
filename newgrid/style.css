@@ -1,19 +1,24 @@
 body {
-    height: 100vh;
+    height: 90vh;
     margin: 0px;
+    width: 220vh;
 
 }
 .top {
-    height: 10%;
+    height: 5%;
     width: 100%;
     display: grid;
     grid-template-columns: repeat(5,1fr);
-    gap: 10px;
+    gap: 5px;
+    border: 5PX black solid;
     background-color: black;
 }
 .mini {
     background-color: white;
-
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: flex;
+    align-items: center;
+    font-weight: 700;
 }
 .grid {
     background-color: black;
@@ -21,8 +26,8 @@ body {
     grid-template-columns: repeat(3,1fr);
     grid-template-rows: repeat(3,1fr);
     width: 100%;
-    height: 90%;
-    gap: 10px;
+    height: 104%;
+    gap: 5px;
 
 }
 .box {
@@ -33,6 +38,8 @@ body {
 }
 .box img {
     margin: auto;
+    width: 150PX;
+    height: 120px;
     
 }
 .minibox {
