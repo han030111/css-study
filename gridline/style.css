@@ -1,0 +1,12 @@
+.left{
+    display: grid;
+    grid-template-rows: repeat(6,1fr) ;
+    width: 60%;
+   height: 90%;
+   margin: 10px;
+
+}
+body{
+ height: 100vh;   
+ background-color:coral;
+}
