@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        button
+    </div>
+    <style>
+        @keyframes aa {
+            From{
+                transform: rotatez(0deg)
+            }
+        to{
+            transform: rotateZ(360deg);
+        }       
+        }
+        div{
+            background-color: tomato;
+            width: 100px;
+            border-radius: 20px;
+            font-family: sans-serif;
+            font-size: 20px;
+            border: black solid 1px;
+            transition: all 0.5s ease-in-out;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: aa 1s ease-in-out infinite;
+        }
+        div:hover{
+            background-color: aqua;
+        }
+    </style>
+</body>
+</html>
