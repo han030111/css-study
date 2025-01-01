@@ -10,6 +10,7 @@ div{
     border: 3px black solid;
     grid-template-columns: 25% 25% repeat(6,1fr);
     grid-template-rows: 40% 20% 20% 20%;
+    padding-bottom: 9px;
 }
 .ccont{
     width: 90vw;
@@ -26,6 +27,7 @@ div{
     gap: 1PX;
     border-bottom: 1PX solid black;
     border-top: 1PX solid black;
+   
 }
 .name{
     font-size: 10px;
