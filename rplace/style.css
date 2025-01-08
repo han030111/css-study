@@ -1,0 +1,78 @@
+canvas{
+    width: 500px;
+    height: 500px;
+    border: 4px black solid;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.cont{
+    display: flex;
+   
+    width: 508px;
+   
+}
+input{
+    width: 30px
+}
+.box{
+    width: 50px ;
+    height: 20px;
+
+}
+#bred{
+    background-color: #A06A42;
+}
+#red{
+    background-color: red;
+}
+#blue{
+    background-color: blue;
+}
+#orange{
+    background-color: orange;
+}
+#gold{
+    background-color: gold;
+   
+}
+#antiwhite{
+    background-color: #820080;
+}
+#black{
+    background-color: #222222;
+}
+#pink{
+    background-color: #FFA7D1;
+}
+#sea{
+    background-color: #0083C7;
+}
+#river{
+    background-color: #00D3DD
+    ;
+}
+#rightpeople{
+    background-color: #CF6EE4;
+}
+#gray{
+    background-color: #888888;
+}
+#mediumgreen{
+    background-color:#02BE01
+}
+#ggreen{
+    background-color: greenyellow;
+}
+#white{
+    background-color: white;
+}
+#boro{
+    background-color:#E4E4E4
+    ;
+}
