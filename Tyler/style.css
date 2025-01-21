@@ -17,6 +17,14 @@ body{
 
     
 }
+.tyler{
+    color: gray;
+}
+.musictitle{
+    color: black;
+    font-weight: 600;
+    margin-top: 5px;
+}
 .left{
     width: 50%;
     height: 100%;
@@ -34,6 +42,7 @@ body{
     height: 20px;
     margin-bottom: 5px;
     margin-left: 10px;
+
 }
 .smalll{
     width: 40px;
@@ -87,6 +96,8 @@ body{
 .listimg{
     width: 50px;
     border-radius: 10px;
+    margin-right: 2
+    0px;
 }
 .list{
     display: flex;
@@ -97,6 +108,8 @@ body{
 .listi{
     display: flex;
     margin: 10px;
+    justify-content: center;
+    align-items: center;
 
 }
 .top{
