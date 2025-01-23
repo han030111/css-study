@@ -1,6 +1,6 @@
 let width=500
 let height=500
-let dal=25
+let dal=10
 let can=document.querySelector("canvas")
 let red=document.querySelector("#red")
 let bred=document.querySelector("#bred")
@@ -107,3 +107,16 @@ river.addEventListener("click",(event)=>{
     console.log(event)
 })
 can.addEventListener("mousedown",fil)
+function draw(x,y,color){
+    ctx.fillStyle=color
+    ctx.fillRect(x,y,dal,dal)
+    console.log(x,y,color)
+}
+
+async function a() {
+    const re  =await fetch("http://127.0.0.1:3000")
+    const    a=await re.json()
+    draw(a.x,a.y,a.color)
+}
+a()
+

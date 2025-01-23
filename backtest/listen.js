@@ -5,14 +5,12 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*"); 
     next();
   });
-app.get("/",(rew,res)=>{
-    const a={
-        x:0,
-        y:0,
-        color:"blue"
+app.get("/",(req,res)=>{
+    a={
+        name:"최두영"
     }
     res.send(a)
 })
 app.listen(port,()=>{
-    console.log(`exemple${port}`)
+    console.log(port)
 })

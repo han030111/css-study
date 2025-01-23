@@ -1,7 +1,10 @@
-const api="https://yts.mx/api/v2/list_movies.json"
-async function re(){
-    const  repen =await fetch(api)
-    const json= repen.json()
-    console.log(json.data.movies[0])
-}
-re()
+
+
+const a =fetch("http://127.0.0.1:3000")
+console.log(a)
+a.then((re)=>{
+    return re.json()
+})
+.then((da)=>{
+    console.log(da)
+})
