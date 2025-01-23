@@ -47,6 +47,7 @@ body{
     color: white;
     background-color: black;
     height: 100px;
+    display: flex;
     border-bottom: 1px white solid;
 }
 
