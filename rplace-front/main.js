@@ -107,16 +107,14 @@ river.addEventListener("click",(event)=>{
     console.log(event)
 })
 can.addEventListener("mousedown",fil)
-function draw(x,y,color){
+function drawpixel(x,y,color){
     ctx.fillStyle=color
     ctx.fillRect(x,y,dal,dal)
-    console.log(x,y,color)
 }
-
-async function a() {
-    const re  =await fetch("http://127.0.0.1:3000")
-    const    a=await re.json()
-    draw(a.x,a.y,a.color)
-}
-a()
-
+fetch("http://127.0.0.1:3000")
+.then((res)=>{
+    return res.json()
+})
+.then((data)=>{
+    drawpixel(data.x,data.y,data.color)
+})

@@ -1,18 +1,20 @@
-const express=require("express")
+const express=require("express"
+)
+
 const app=express()
 const port=3000
 app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*"); 
+    res.header('Access-Control-Allow-Origin', '*');
     next();
-  });
-app.get("/",(rew,res)=>{
-    const a={
-        x:0,
-        y:0,
-        color:"blue"
+});
+app.get("/",(req,res)=>{
+    const pixel={
+        x:50
+        ,y:100
+        ,color:"black"
     }
-    res.send(a)
+    res.send(pixel)
 })
 app.listen(port,()=>{
-    console.log(`exemple${port}`)
+    console.log(1)
 })

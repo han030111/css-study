@@ -1,90 +1,68 @@
-
-div img{
-    height: 100%;
-
-}
-
 body{
-    background-color: black;
     margin: 0px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.title{
-    width: 80%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 30px;
-}
-.border{
-    width: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 35px;
-    height: 100%;
-    font-family: serif;
-    font-weight: bold;
-    border-right: 1px white solid;
-}
-.grid{
-    margin-top: 5px;
+    width: 100vh;
     height: 100vh;
-    width: 200vh;
-    display: grid;
-    grid-template-columns:repeat(5,1fr) ;
-    grid-template-rows: repeat(5,1fr);
-    gap: 20px;}
+    background-color: gray;
     
-
-    
+}
 .header{
-    width: 225vh;
-    color: white;
-    background-color: black;
-    height: 100px;
     display: flex;
-    border-bottom: 1px white solid;
-}
-
-.box{
-
-
-    border-radius: 20px;
-}
-.box img{
+    height: 80px;
+    background-color: black;
+    color: white;
+    position: fixed;
     width: 100%;
+    justify-content: center;
+}
+img{
+   width: 100%;
+   height: 100%;
+}
+.cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200%;
     height: 100%;
-    border-radius: 20px;
-
-}
-#second{
-    grid-column: 3 / 5;
-    grid-row: 3;
-    
-}
-#aa{
-    grid-row: 3;
-    grid-column: 5;
 }
 
-#third{
-    grid-row: 2/3;
+.grid{
+    margin-top: 180px;
+    width: 100%;
+    gap: 10px;
+    margin-left: auto;
+    height: 100%;
+    margin-left: 100px;
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-template-rows: repeat(2,1fr);
+}
+.box:first-child{
+    grid-row: 2;
+}
+.box:nth-child(2){
+    grid-column: 1/3;
+}
+.box:nth-child(3){
     grid-column: 2/4;
 }
-#flex{
+.box:nth-child(4){
+    grid-column: 3;
     grid-row: 1;
-    grid-column: 2/4;
 }
-#tylerleft{
-    grid-row: 1/3;
+.box:nth-child(5){
     grid-column: 4;
+    grid-row: 2;
 }
-#tylerright{
-    grid-row: 1/3;
+.box:nth-child(6){
+    grid-column: 4;
+    grid-row: 1;
+}
+.box:nth-child(7){
     grid-column: 5;
+    grid-row: 1;
+    border-radius: 20px;
+}
+.box{
+   border-radius: 20px;
 }
