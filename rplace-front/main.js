@@ -1,3 +1,4 @@
+
 let width=500
 let height=500
 let dal=10
@@ -34,14 +35,7 @@ for(let y=0;y<width/dal;y++){
     ctx.lineTo(y*dal,width)
     ctx.stroke()}
 
-function fil(event){
-    offsetX=event.offsetX
-    offsetY=event.offsetY
-    offsetX=offsetX-=offsetX%dal
-    offsetY=offsetY-=offsetY%dal
-    ctx.fillRect(offsetX,offsetY,dal,dal)
-    
-}
+
 boro.addEventListener("click",(event)=>{
     ctx.fillStyle="#E4E4E4"
     console.log(event)
@@ -106,15 +100,50 @@ river.addEventListener("click",(event)=>{
     ctx.fillStyle="#00D3DD"
     console.log(event)
 })
-can.addEventListener("mousedown",fil)
-function drawpixel(x,y,color){
-    ctx.fillStyle=color
-    ctx.fillRect(x,y,dal,dal)
+async function get() {
+    const repen = await fetch("http://127.0.0.1:3000");
+    const dat = await repen.json();
+    return dat;
 }
-fetch("http://127.0.0.1:3000")
-.then((res)=>{
-    return res.json()
-})
-.then((data)=>{
-    drawpixel(data.x,data.y,data.color)
-})
+
+async function post(x, y, color) {
+    const data = { x, y, color }; 
+    try {
+        const rep = await fetch("http://127.0.0.1:3000", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data) 
+        });
+        const responseData = await rep.json(); 
+        console.log("Server response:", responseData); 
+    } catch (error) {
+        console.error("Error sending data:", error);
+    }
+}
+
+function fil(event) {
+    offsetX = event.offsetX;
+    offsetY = event.offsetY;
+    offsetX = offsetX -= offsetX % dal;
+    offsetY = offsetY -= offsetY % dal;
+    ctx.fillRect(offsetX, offsetY, dal, dal);
+    post(offsetX, offsetY, ctx.fillStyle);
+}
+
+async function pixel(x, y, color) {
+    x -= x % dal;
+    y -= y % dal;
+    ctx.fillStyle = color; // fillStyle 설정
+    ctx.fillRect(x, y, dal, dal); // 픽셀 그리기
+}
+
+can.addEventListener("mousedown", fil);
+
+async function init() {
+    const rep = await get();
+    rep.forEach(item => { 
+        pixel(item.x,item.y,item.color)
+    });
+}
+
+init();
