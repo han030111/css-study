@@ -18,13 +18,10 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-    try {
+
         a.push(req.body);
-        res.status(201).send({ message: "Data received successfully" });
-    } catch (error) {
-        console.error("Error processing data:", error);
-        res.status(500).send({ message: "Internal server error" });
-    }
+        a.send(req.body)
+
 });
 
 app.listen(port, () => {

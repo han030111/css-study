@@ -1,7 +1,7 @@
 
 let width=500
 let height=500
-let dal=10
+let dal=20
 let can=document.querySelector("canvas")
 let red=document.querySelector("#red")
 let bred=document.querySelector("#bred")
@@ -21,6 +21,7 @@ let mediumgreen=document.querySelector("#mediumgreen")
 let ctx=can.getContext("2d")
 can.width=width
 console.log(red)
+let maincolor="black"
 can.height=height
 ctx.strokeStyle="white"
 for(let x=0;x<width/dal;x++){
@@ -37,71 +38,87 @@ for(let y=0;y<width/dal;y++){
 
 
 boro.addEventListener("click",(event)=>{
-    ctx.fillStyle="#E4E4E4"
+    maincolor="#E4E4E4"
+    
     console.log(event)
 })
 red.addEventListener("click",(event)=>{
-    ctx.fillStyle="red"
+    maincolor="red"
+    
     console.log(event)
 })
 gray.addEventListener("click",(event)=>{
-    ctx.fillStyle="#888888"
+    maincolor="#888888"
+    
     console.log(event)
 })
 bred.addEventListener("click",(event)=>{
-    ctx.fillStyle="#A06A42"
+    maincolor="#A06A42"
+    
     console.log(event)
 })
 blue.addEventListener("click",(event)=>{
-    ctx.fillStyle="blue"
+    maincolor="blue"
+    
     console.log(event)
 })
 white.addEventListener("click",(event)=>{
-    ctx.fillStyle="white"
+    maincolor="white"
+    
     console.log(event)
 })
 antiwhite.addEventListener("click",(event)=>{
-    ctx.fillStyle=" #820080"
+    maincolor=" #820080"
+    
     console.log(event)
 })
 gold.addEventListener("click",(event)=>{
-    ctx.fillStyle="gold"
+    maincolor="gold"
+    
     console.log(event)
 })
 mediumgreen.addEventListener("click",(event)=>{
-    ctx.fillStyle="#02BE01"
+    maincolor="#02BE01"
+    
     console.log(event)
 })
 orange.addEventListener("click",(event)=>{
-    ctx.fillStyle="orange"
+    maincolor="orange"
+    
     console.log(event)
 })
 ggreen.addEventListener("click",(event)=>{
-    ctx.fillStyle="#94E044"
+    maincolor="#94E044"
+    
     console.log(event)
 })
 rightpeople.addEventListener("click",(event)=>{
-    ctx.fillStyle="#CF6EE4"
+    maincolor="#CF6EE4"
+    
     console.log(event)
 })
 black.addEventListener("click",(event)=>{
-    ctx.fillStyle="black"
+    maincolor="black"
+    
     console.log(event)
 })
 pink.addEventListener("click",(event)=>{
-    ctx.fillStyle="pink"
+    maincolor="pink"
+    
     console.log(event)
 })
 sea.addEventListener("click",(event)=>{
-    ctx.fillStyle="#0083C7"
+    maincolor="#0083C7"
+    
     console.log(event)
 })
 river.addEventListener("click",(event)=>{
-    ctx.fillStyle="#00D3DD"
+    maincolor="#00D3DD"
+    
     console.log(event)
 })
-async function get() {
-    const repen = await fetch("http://127.0.0.1:3000");
+  async function get() {
+    const repen = await fetch("http://3.36.70.196:3001/");
     const dat = await repen.json();
     return dat;
 }
@@ -109,25 +126,29 @@ async function get() {
 async function post(x, y, color) {
     const data = { x, y, color }; 
     try {
-        const rep = await fetch("http://127.0.0.1:3000", {
+        
+        const rep = await fetch("http://3.36.70.196:3001/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data) 
         });
         const responseData = await rep.json(); 
+        
         console.log("Server response:", responseData); 
     } catch (error) {
         console.error("Error sending data:", error);
     }
 }
 
-function fil(event) {
+async function fil(event) {
     offsetX = event.offsetX;
     offsetY = event.offsetY;
     offsetX = offsetX -= offsetX % dal;
     offsetY = offsetY -= offsetY % dal;
-    ctx.fillRect(offsetX, offsetY, dal, dal);
-    post(offsetX, offsetY, ctx.fillStyle);
+    ctx.fillStyle=maincolor
+       ctx.fillRect(offsetX, offsetY, dal, dal);
+    post(offsetX, offsetY, maincolor);
+
 }
 
 async function pixel(x, y, color) {
@@ -135,6 +156,7 @@ async function pixel(x, y, color) {
     y -= y % dal;
     ctx.fillStyle = color; // fillStyle 설정
     ctx.fillRect(x, y, dal, dal); // 픽셀 그리기
+    
 }
 
 can.addEventListener("mousedown", fil);
@@ -145,5 +167,4 @@ async function init() {
         pixel(item.x,item.y,item.color)
     });
 }
-
-init();
+setInterval(init,100)
