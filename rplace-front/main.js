@@ -1,170 +1,205 @@
-
-let width=500
-let height=500
-let dal=20
-let can=document.querySelector("canvas")
-let red=document.querySelector("#red")
-let bred=document.querySelector("#bred")
-let blue=document.querySelector("#blue")
-let orange=document.querySelector("#orange")
-let gold=document.querySelector("#gold")
-let gray=document.querySelector("#gray")
-let white=document.querySelector("#white")
-let antiwhite=document.querySelector("#antiwhite")
-let ggreen=document.querySelector("#ggreen")
-let black=document.querySelector("#black")
-let pink=document.querySelector("#pink")
-let sea=document.querySelector("#sea")
-let river=document.querySelector("#river")
-let rightpeople=document.querySelector("#rightpeople")
-let mediumgreen=document.querySelector("#mediumgreen")
-let ctx=can.getContext("2d")
+const width=500
+const height=500
+const can=document.querySelector("canvas")
+const ctx= can.getContext('2d')
+const dal=25
 can.width=width
-console.log(red)
-let maincolor="black"
 can.height=height
-ctx.strokeStyle="white"
-for(let x=0;x<width/dal;x++){
-    ctx.beginPath()
-    ctx.moveTo(0,x*dal)
-    ctx.lineTo(height,x*dal)
-    ctx.stroke()
-}
-for(let y=0;y<width/dal;y++){
-    ctx.beginPath()
-    ctx.moveTo(y*dal,0)
-    ctx.lineTo(y*dal,width)
-    ctx.stroke()}
-
-
-boro.addEventListener("click",(event)=>{
-    maincolor="#E4E4E4"
-    
-    console.log(event)
+const a=document.querySelector("#color_6d001a")
+const b=document.querySelector("#color_be0039")
+const c=document.querySelector("#color_ff4500")
+const d=document.querySelector("#color_ffa800")
+const e=document.querySelector("#color_ffd635")
+const f=document.querySelector("#color_fff8b8")
+const g=document.querySelector("#color_00a368")
+const h=document.querySelector("#color_00cc78")
+const i=document.querySelector("#color_7eed56")
+const j=document.querySelector("#color_00756f")
+const k=document.querySelector("#color_009eaa")
+const l=document.querySelector("#color_00ccc0")
+const ww=document.querySelector("#color_2450a4")
+const n=document.querySelector("#color_3690ea")
+const o=document.querySelector("#color_51e9f4")
+const q=document.querySelector("#color_493ac1")
+const r=document.querySelector("#color_6a5cff")
+const s=document.querySelector("#color_94b3ff")
+const t=document.querySelector("#color_811e9f")
+const u=document.querySelector("#color_b44ac0")
+const v=document.querySelector("#color_e4abff")
+const w=document.querySelector("#color_de107f")
+const x=document.querySelector("#color_ff3881")
+const y=document.querySelector("#color_ff99aa")
+const z=document.querySelector("#color_6d482f")
+const aa=document.querySelector("#color_9c6926")
+const ab=document.querySelector("#color_ffb470")
+const ac=document.querySelector("#color_000000")
+const ad=document.querySelector("#color_515252")
+const ae=document.querySelector("#color_898d90")
+const af=document.querySelector("#color_d4d7d9")
+const ag=document.querySelector("#color_ffffff")
+let maincolor="black"
+a.addEventListener("click",()=>{
+   
+    maincolor="#6d001a"
 })
-red.addEventListener("click",(event)=>{
-    maincolor="red"
-    
-    console.log(event)
+b.addEventListener("click",()=>{
+   
+    maincolor="#be0039"
 })
-gray.addEventListener("click",(event)=>{
-    maincolor="#888888"
-    
-    console.log(event)
+c.addEventListener("click",()=>{
+   
+    maincolor="#ff4500"
 })
-bred.addEventListener("click",(event)=>{
-    maincolor="#A06A42"
-    
-    console.log(event)
+d.addEventListener("click",()=>{
+   
+    maincolor="#ffa800"
 })
-blue.addEventListener("click",(event)=>{
-    maincolor="blue"
-    
-    console.log(event)
+e.addEventListener("click",()=>{
+   
+    maincolor="#ffd635"
 })
-white.addEventListener("click",(event)=>{
-    maincolor="white"
-    
-    console.log(event)
+f.addEventListener("click",()=>{
+   
+    maincolor="#fff8b8"
 })
-antiwhite.addEventListener("click",(event)=>{
-    maincolor=" #820080"
-    
-    console.log(event)
+g.addEventListener("click",()=>{
+   
+    maincolor="#00a368"
 })
-gold.addEventListener("click",(event)=>{
-    maincolor="gold"
-    
-    console.log(event)
+h.addEventListener("click",()=>{
+   
+    maincolor="#00cc78"
 })
-mediumgreen.addEventListener("click",(event)=>{
-    maincolor="#02BE01"
-    
-    console.log(event)
+i.addEventListener("click",()=>{
+   
+    maincolor="#7eed56"
 })
-orange.addEventListener("click",(event)=>{
-    maincolor="orange"
-    
-    console.log(event)
+j.addEventListener("click",()=>{
+   
+    maincolor="#00756f"
 })
-ggreen.addEventListener("click",(event)=>{
-    maincolor="#94E044"
-    
-    console.log(event)
+k.addEventListener("click",()=>{
+   
+    maincolor="#009eaa"
 })
-rightpeople.addEventListener("click",(event)=>{
-    maincolor="#CF6EE4"
-    
-    console.log(event)
+l.addEventListener("click",()=>{
+   
+    maincolor="#00ccc0"
 })
-black.addEventListener("click",(event)=>{
-    maincolor="black"
-    
-    console.log(event)
+ww.addEventListener("click",()=>{
+   
+    maincolor="#2450a4"
 })
-pink.addEventListener("click",(event)=>{
-    maincolor="pink"
-    
-    console.log(event)
+n.addEventListener("click",()=>{
+   
+    maincolor="#3690ea"
 })
-sea.addEventListener("click",(event)=>{
-    maincolor="#0083C7"
-    
-    console.log(event)
+o.addEventListener("click",()=>{
+   
+    maincolor="#51e9f4"
 })
-river.addEventListener("click",(event)=>{
-    maincolor="#00D3DD"
-    
-    console.log(event)
+q.addEventListener("click",()=>{
+   
+    maincolor="#493ac1"
 })
-  async function get() {
-    const repen = await fetch("http://3.36.70.196:3001/");
-    const dat = await repen.json();
-    return dat;
-}
-
-async function post(x, y, color) {
-    const data = { x, y, color }; 
-    try {
-        
-        const rep = await fetch("http://3.36.70.196:3001/", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data) 
-        });
-        const responseData = await rep.json(); 
-        
-        console.log("Server response:", responseData); 
-    } catch (error) {
-        console.error("Error sending data:", error);
-    }
-}
-
-async function fil(event) {
-    offsetX = event.offsetX;
-    offsetY = event.offsetY;
-    offsetX = offsetX -= offsetX % dal;
-    offsetY = offsetY -= offsetY % dal;
+r.addEventListener("click",()=>{
+   
+    maincolor="#6a5cff"
+})
+s.addEventListener("click",()=>{
+   
+    maincolor="#94b3ff"
+})
+t.addEventListener("click",()=>{
+   
+    maincolor="#811e9f"
+})
+u.addEventListener("click",()=>{
+   
+    maincolor="#b44ac0"
+})
+v.addEventListener("click",()=>{
+   
+    maincolor="#e4abff"
+})
+w.addEventListener("click",()=>{
+   
+    maincolor="#de107f"
+})
+x.addEventListener("click",()=>{
+   
+    maincolor="#ff3881"
+})
+y.addEventListener("click",()=>{
+   
+    maincolor="#ff99aa"
+})
+z.addEventListener("click",()=>{
+   
+    maincolor="#6d482f"
+})
+aa.addEventListener("click",()=>{
+   
+    maincolor="#9c6926"})
+ab.addEventListener("click",()=>{
+   
+    maincolor="#ffb470"})
+ac.addEventListener("click",()=>{
+   
+    maincolor="#000000"})
+ad.addEventListener("click",()=>{
+   
+    maincolor="#515252"})
+ae.addEventListener("click",()=>{
+   
+    maincolor="#898d90"})
+af.addEventListener("click",()=>{
+   
+    maincolor="#d4d7d9"})
+ag.addEventListener("click",()=>{
+   
+    maincolor="#ffffff"})
+function fill(event){
     ctx.fillStyle=maincolor
-       ctx.fillRect(offsetX, offsetY, dal, dal);
-    post(offsetX, offsetY, maincolor);
-
-}
-
-async function pixel(x, y, color) {
-    x -= x % dal;
-    y -= y % dal;
-    ctx.fillStyle = color; // fillStyle 설정
-    ctx.fillRect(x, y, dal, dal); // 픽셀 그리기
+    let X=event.offsetX
+    let Y=event.offsetY
+    X-=X%dal
+    Y-=Y%dal
     
+    ctx.fillRect(X,Y,dal,dal)
+    post(X,Y,maincolor)
 }
+async function post(x,y,color){
+    const list={
+        x:x,
+        y:y,
+        color:color
+    }
 
-can.addEventListener("mousedown", fil);
-
-async function init() {
-    const rep = await get();
-    rep.forEach(item => { 
-        pixel(item.x,item.y,item.color)
+    const rep=await fetch('http://127.0.0.1:3002', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(list),
+      })}
+async function get(){
+    const rep=await fetch("http://127.0.0.1:3002")
+    const data=await rep.json()
+    console.log(data)
+    return data
+}
+function pixel(x,y,color){
+    ctx.fillStyle=color
+    ctx.fillRect(x,y,dal,dal)
+}
+async function init(){
+    const rep=await get()
+    console.log(rep)
+    rep.forEach(function(data) {
+      pixel(data.x,data.y,data.color)
     });
 }
-setInterval(init,100)
+
+can.addEventListener("mousedown",fill)
+setInterval(init,500)
