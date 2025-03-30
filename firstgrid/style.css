@@ -1,0 +1,108 @@
+body{
+margin: 0px;
+}
+
+.title{
+    height: 20vh;
+    font-size: 70px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;;
+    align-items: center;;
+    font-family: sans-serif;
+}
+.grid{
+    height: 90%;
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    grid-template-rows: repeat(2,1fr);
+}
+#box1{
+    display:flex;
+    align-items:center;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items:center;
+    background-color: #bfbca6;
+}
+div{
+    font-family: sans-serif;
+}
+#box2{
+    display:flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items:center;
+}
+#box3{
+    display:flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items:center;
+    background-color: #ff4714;
+}
+#box4{
+    display:flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items:center;
+}
+#box5{
+    display:flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items:center;
+    background-color: #837d96;
+}
+#box6{
+    display:flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items:center;
+    background-color: #d0ff73;
+}
+#box7{
+    display:flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items:center;
+    background-color: #9c3535;
+}
+#box8{
+    display:flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items:center;
+    background-color: #3aaafa;
+}
+#box9{
+    display:flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items:center;
+    
+}
+#box10{
+    display:flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items:center;
+    background-color: #41907a;
+}
+#box11{
+    display:flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items:center;
+}
+#box12{
+    display:flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items:center;
+    background-color: #41907a;
+}
+img{
+    width: 100%;
+    height: 40vh;
+}

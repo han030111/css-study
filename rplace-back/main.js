@@ -11,7 +11,6 @@ app.get("/", (req, res) => {
 });
 app.post("/",(req,res)=>{
     a.push(req.body)
-    console.log(a)
 })
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
