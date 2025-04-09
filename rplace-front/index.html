@@ -1,183 +1,492 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko"> {/* 언어 설정 한국어 */}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>픽셀 아트</title> {/* 제목 한국어 */}
     <style>
-    canvas{
-        border: 3px black solid;
-        width: 500px;
-        height: 500px;
-    }
-    body{
-        margin: 0px;
-        width: 100vw;
-        height: 100vh;
-    
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-    }
-   
-    #bred {
-    background-color: #be0039;
-}
-#red {
-    background-color: #ff4500;
-}
-#blue {
-    background-color: #ffa800;
-}
-#orange {
-    background-color: #ffd635;
-}
-#gold {
-    background-color: #fff8b8;
-}
-#antiwhite {
-    background-color: #00a368;
-}
-#ggreen {
-    background-color: #00cc78;
-}
-#mediumgreen {
-    background-color: #7eed56;
-}
-#white {
-    background-color: #00756f;
-}
-#boro {
-    background-color: #009eaa;
-}
-#gray {
-    background-color: #00ccc0;
-}
-#black {
-    background-color: #2450a4;
-}
-#pink {
-    background-color: #3690ea;
-}
-#sea {
-    background-color: #51e9f4;
-}
-#river {
-    background-color: #493ac1;
-}
-#rightpeople {
-    background-color: #6a5cff;
-}
+        /* --- CSS Styles (이전과 동일) --- */
+        canvas {
+            border: 3px black solid;
+            width: 960px; /* 기본 크기 유지 */
+            height: 480px;
+            display: block;
+            margin-bottom: 10px;
+            background-color: #f0f0f0; /* 캔버스 배경 약간 추가 */
+        }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+            font-family: sans-serif; /* 기본 폰트 지정 */
+        }
 
-/* 추가적으로, html에서 id가 잘못 적힌 부분을 수정해야 합니다. */
-#ggreen {
-    background-color: #94b3ff;
-}
+        /* 팔레트 컨테이너 스타일 (8x8 그리드) */
+        #colorPaletteContainer {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr); /* 8열 */
+            grid-template-rows: repeat(8, 1fr);    /* 8행 */
+            gap: 2px; /* 버튼 간 간격 */
+            /* 8개 * 30px 버튼 + 7개 * 2px 간격 */
+            width: calc(8 * 30px + 7 * 2px);
+            height: calc(8 * 30px + 7 * 2px);
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 2px;
+            justify-content: center;
+        }
 
-#whit {
-    background-color: #811e9f;
-}
+        .box {
+            border: 1px solid #ddd;
+            cursor: pointer;
+            width: 30px; /* 버튼 크기 */
+            height: 30px;
+            box-sizing: border-box;
+            transition: border 0.2s ease, transform 0.1s ease; /* 부드러운 전환 효과 */
+            display: flex; /* 내부 정렬 (필요시) */
+            justify-content: center;
+            align-items: center;
+        }
 
-#blac {
-    background-color: #b44ac0;
-}
+        .box:hover {
+            border: 2px solid #000;
+            transform: scale(1.1); /* 호버 시 약간 확대 */
+        }
+        /* 선택된 색상 표시 (선택 사항) */
+        .box.selected {
+             border: 2px solid #007bff; /* 파란색 테두리로 선택 표시 */
+             box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
 
-#rive {
-    background-color: #e4abff;
-}
 
-    #extra1 {
-    background-color: #94b3ff;
-}
-#extra2 {
-    background-color: #811e9f;
-}
-#extra3 {
-    background-color: #b44ac0;
-}
-#extra4 {
-    background-color: #e4abff;
-}
-#extra5 {
-    background-color: #de107f;
-}
-#extra6 {
-    background-color: #ff3881;
-}
-#extra7 {
-    background-color: #ff99aa;
-}
-#extra8 {
-    background-color: #6d482f;
-}
-#extra9 {
-    background-color: #9c6926;
-}
-#extra10 {
-    background-color: #ffb470;
-}
-#extra11 {
-    background-color: #000000;
-}
-#extra12 {
-    background-color: #515252;
-}
-#extra13 {
-    background-color: #898d90;
-}
-#extra14 {
-    background-color: #d4d7d9;
-}
-#extra15 {
-    background-color: #ffffff;
-}
-.cont{
-        width: 504PX;
-        height: 60px;
-        display: grid;
-        grid-template-columns: repeat(10,1fr);
-    }
+        #controls {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        #controls button {
+            padding: 8px 15px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            background-color: #f8f8f8;
+            border-radius: 4px;
+            transition: background-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        #controls button:hover {
+             background-color: #eee;
+             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        #controls button:active {
+             background-color: #ddd;
+        }
+
+        /* 로딩 표시 */
+        #loadingIndicator {
+            display: none;
+            margin-top: 10px;
+            font-style: italic;
+            color: #555;
+        }
     </style>
-
 </head>
-<body> 
-    <canvas></canvas>
-    
-    <div class="cont">
-        <button id="bred" class="box"></button>
-        <button id="red" class="box"></button>
-        <button id="blue"  class="box"></button>
-        <button id="orange" class="box"></button>
-        <button id="gold" class="box"></button>
-        <button id="antiwhite" class="box"></button>
-        <button id="ggreen" class="box"></button>
-        <button id="mediumgreen" class="box"></button>
-        <button id="white" class="box"></button>
-        <button id="boro" class="box"></button>
-        <button id="gray" class="box"></button>
-        <button id="black" class="box"></button>
-        <button id="pink" class="box"></button>
-        <button id="sea" class="box"></button>
-        <button id="river" class="box"></button>
-        <button id="rightpeople" class="box"></button>
-        <button id="extra1" class="box"></button>
-        <button id="extra2" class="box"></button>
-        <button id="extra3" class="box"></button>
-        <button id="extra4" class="box"></button>
-        <button id="extra5" class="box"></button>
-        <button id="extra6" class="box"></button>
-        <button id="extra7" class="box"></button>
-        <button id="extra8" class="box"></button>
-        <button id="extra9" class="box"></button>
-        <button id="extra10" class="box"></button>
-        <button id="extra11" class="box"></button>
-        <button id="extra12" class="box"></button>
-        <button id="extra13" class="box"></button>
-        <button id="extra14" class="box"></button>
-        <button id="extra15" class="box"></button>
-    </div> 
-    <script src="main.js"></script>
+<body>
+    <canvas id="pixelCanvas"></canvas>
 
+    <div id="colorPaletteContainer"></div>
+
+    <div id="controls">
+        <button id="resetButton">초기화</button> {/* 버튼명 한국어 */}
+        <button id="backButton">뒤로</button> {/* 버튼명 한국어 */}
+    </div>
+
+    <div id="loadingIndicator">로딩 중...</div> {/* 로딩 메시지 한국어 */}
+
+    <script>
+        // --- Client-Side JavaScript ---
+
+        // --- Configuration ---
+        const canvasWidth = 960;
+        const canvasHeight = 480;
+        const pixelSize = 15; // 픽셀 크기
+        const serverUrl = 'http://localhost:3002'; // Node.js 서버 주소
+        const historyLimit = 10; // Undo 기록 제한
+
+        // --- DOM Elements ---
+        const canvas = document.getElementById("pixelCanvas");
+        const ctx = canvas.getContext('2d', { willReadFrequently: true });
+        const resetButtonElement = document.getElementById("resetButton");
+        const backButtonElement = document.getElementById("backButton");
+        const colorPaletteContainer = document.getElementById("colorPaletteContainer");
+        const loadingIndicator = document.getElementById("loadingIndicator");
+
+        // --- State Variables ---
+        let maincolor = "#000000"; // 기본 색상: 검정
+        let isDrawing = false;
+        let history = []; // Undo 기록
+        let selectedButton = null; // 현재 선택된 색상 버튼 참조 (선택 사항)
+
+        // --- HSL to HEX Helper Function ---
+        // H: 0-360, S: 0-100, L: 0-100
+        function hslToHex(h, s, l) {
+            s /= 100;
+            l /= 100;
+            const k = n => (n + h / 30) % 12;
+            const a = s * Math.min(l, 1 - l);
+            const f = n =>
+                l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+            const r = Math.round(255 * f(0));
+            const g = Math.round(255 * f(8));
+            const b = Math.round(255 * f(4));
+            // Ensure leading zero for single digit hex values
+            const toHex = x => {
+                const hex = x.toString(16);
+                return hex.length === 1 ? '0' + hex : hex;
+            };
+            return `#${toHex(r)}${toHex(g)}${toHex(b)}`.toUpperCase();
+        }
+
+
+        // --- Generate 64 Color Data (8x8 Grid) ---
+        // Rows 1-6: Hue (R,O,Y,G,B,P) x [Saturation 4 steps] + [Lightness 4 steps]
+        // Row 7: Spectrum
+        // Row 8: Grayscale
+        const colorData = [];
+        const hues = [0, 30, 60, 120, 240, 270]; // R, O, Y, G, B, P
+        const stepsPerVariation = 4; // 채도 4단계, 명도 4단계
+
+        // Rows 1-6: Hue rows with Saturation + Lightness variations
+        for (let i = 0; i < hues.length; i++) {
+            const hue = hues[i];
+
+            // Columns 1-4: Saturation variation (Low to High) at Mid Lightness (L=50)
+            const midLightness = 50;
+            for (let j = 0; j < stepsPerVariation; j++) {
+                // Saturation from 25% to 100%
+                const saturation = Math.round(25 + (j * (75 / (stepsPerVariation - 1))));
+                const hex = hslToHex(hue, saturation, midLightness);
+                colorData.push({ id: `color${colorData.length + 1}`, hex: hex });
+            }
+
+            // Columns 5-8: Lightness variation (High to Low) at High Saturation (S=100)
+            const highSaturation = 100;
+            for (let j = 0; j < stepsPerVariation; j++) {
+                // Lightness from 90% down to 30%
+                const lightness = Math.round(90 - (j * (60 / (stepsPerVariation - 1))));
+                const hex = hslToHex(hue, highSaturation, lightness);
+                colorData.push({ id: `color${colorData.length + 1}`, hex: hex });
+            }
+        }
+
+        // Row 7: Spectrum Colors (8 steps) - Unchanged
+        const spectrumHues = [0, 30, 60, 120, 180, 240, 270, 300]; // R, O, Y, G, Cyan, B, Violet, Magenta
+        for (let i = 0; i < spectrumHues.length; i++) {
+             const hex = hslToHex(spectrumHues[i], 100, 50); // Full saturation, mid lightness
+             colorData.push({ id: `color${colorData.length + 1}`, hex: hex });
+        }
+
+        // Row 8: Grayscale (White to Black, 8 steps) - Unchanged
+        const graySteps = 8;
+        for (let i = 0; i < graySteps; i++) {
+            // Lightness from 100% down to 0%
+            const grayLightness = Math.round(100 - (i * (100 / (graySteps - 1))));
+            const hex = hslToHex(0, 0, grayLightness); // Hue/Sat don't matter for grayscale
+            colorData.push({ id: `color${colorData.length + 1}`, hex: hex });
+        }
+
+        // Ensure exactly 64 colors
+        while (colorData.length < 64) {
+            colorData.push({ id: `color${colorData.length + 1}`, hex: "#EEEEEE" }); // Fill remaining with light gray if needed
+        }
+        if (colorData.length > 64) {
+             colorData.length = 64; // Trim if too many
+        }
+
+
+        // --- Functions ---
+
+        // 팔레트 버튼 초기화
+        function initializeColorPalette() {
+            colorPaletteContainer.innerHTML = ''; // 기존 버튼 제거
+            const colorMap = {}; // 로컬 맵
+
+            colorData.forEach(colorInfo => {
+                colorMap[colorInfo.id] = colorInfo.hex; // 맵 채우기
+
+                // 버튼 요소 생성
+                const button = document.createElement('button');
+                button.id = colorInfo.id;
+                button.classList.add('box'); // CSS 클래스 적용
+                button.style.backgroundColor = colorInfo.hex; // 배경색 설정
+                button.title = `${colorInfo.id} (${colorInfo.hex})`; // 툴팁 (마우스 올리면 보임)
+
+                // 색상 선택 처리 함수
+                const selectColor = () => {
+                    maincolor = colorInfo.hex;
+                    console.log("선택된 색상:", maincolor); // 로그 한국어
+
+                    // 이전에 선택된 버튼의 표시 제거 (선택 사항)
+                    if (selectedButton) {
+                         selectedButton.classList.remove('selected');
+                    }
+                    // 현재 버튼에 선택 표시 추가 (선택 사항)
+                    button.classList.add('selected');
+                    selectedButton = button;
+                };
+
+                // 클릭 및 터치 이벤트 리스너 추가
+                button.addEventListener("click", selectColor);
+                button.addEventListener("touchstart", (e) => {
+                    selectColor();
+                    e.preventDefault(); // 터치 기본 동작(스크롤 등) 방지
+                });
+
+                // 팔레트 컨테이너에 버튼 추가
+                colorPaletteContainer.appendChild(button);
+            });
+            console.log("색상 팔레트 초기화 완료."); // 로그 한국어
+        }
+
+        // 현재 캔버스 상태를 history에 저장 (Undo용)
+        function saveCanvasState() {
+            try {
+                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+                history.push(new Uint8ClampedArray(imageData)); // 복사본 저장
+                if (history.length > historyLimit) {
+                    history.shift(); // 가장 오래된 기록 제거
+                }
+            } catch (e) {
+                console.error("캔버스 상태 저장 실패:", e); // 오류 로깅
+                // Tainted canvas 오류 등이 발생할 수 있음
+            }
+        }
+
+
+        // 이전 캔버스 상태 복원 (Undo)
+        function restoreCanvasState() {
+            if (history.length > 0) {
+                const previousState = history.pop(); // 마지막 상태 가져오기
+                const imageData = new ImageData(previousState, canvas.width, canvas.height);
+                ctx.putImageData(imageData, 0, 0); // 복원된 상태 그리기
+                console.log("이전 상태 복원 완료."); // 로그 한국어
+            } else {
+                console.log("복원할 기록이 없습니다."); // 로그 한국어
+            }
+        }
+
+       // 캔버스에 픽셀 그리고 서버에 데이터 전송
+        function fill(event) {
+            if (!isDrawing) return;
+
+            // 캔버스 기준 마우스/터치 좌표 계산
+            let x, y;
+            const rect = canvas.getBoundingClientRect();
+            if (event.type.startsWith('touch')) {
+                // Check if touches exist
+                 if (!event.touches || event.touches.length === 0) return;
+                x = event.touches[0].clientX - rect.left;
+                y = event.touches[0].clientY - rect.top;
+            } else { // Mouse event
+                // Check if clientX/Y exist (robustness)
+                if (typeof event.clientX !== 'number' || typeof event.clientY !== 'number') return;
+                x = event.clientX - rect.left;
+                y = event.clientY - rect.top;
+            }
+
+
+            // pixelSize 그리드에 맞게 좌표 조정
+            const gridX = Math.floor(x / pixelSize) * pixelSize;
+            const gridY = Math.floor(y / pixelSize) * pixelSize;
+
+            // 범위 확인 (캔버스 밖 클릭 방지)
+            if (gridX < 0 || gridX >= canvas.width || gridY < 0 || gridY >= canvas.height) {
+                return;
+            }
+
+            // 사각형(픽셀) 그리기
+            ctx.fillStyle = maincolor;
+            ctx.fillRect(gridX, gridY, pixelSize, pixelSize);
+
+            // 서버로 픽셀 데이터 전송 (비동기, 오류 처리 포함)
+            post(gridX, gridY, maincolor).catch(err => console.error("Post Error:", err));
+        }
+
+        // 서버로 픽셀 데이터 전송 (POST)
+        async function post(x, y, color) {
+            const pixelData = { x: x, y: y, color: color };
+            try {
+                const response = await fetch(`${serverUrl}/`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(pixelData),
+                });
+                if (!response.ok) {
+                    // 서버 오류 응답 로깅 (더 자세히)
+                    const errorText = await response.text();
+                    console.error('POST 요청 실패:', response.status, response.statusText, errorText); // 로그 한국어
+                }
+            } catch (error) {
+                 // 네트워크 오류 또는 기타 예외 로깅
+                console.error('POST 요청 중 오류 발생:', error.message || error); // 로그 한국어
+            }
+        }
+
+
+        // 서버에서 캔버스 데이터 가져오기 (GET)
+        async function get() {
+            showLoading(true); // 로딩 표시 보이기
+            try {
+                const response = await fetch(`${serverUrl}/`);
+                if (!response.ok) {
+                    console.error('GET 요청 실패:', response.status, response.statusText); // 로그 한국어
+                    alert(`데이터 로딩 실패: ${response.statusText}. 서버가 실행 중인지 확인하세요.`); // 알림 한국어
+                    return [];
+                }
+                const data = await response.json();
+                 // 데이터 형식 검증 (선택 사항이지만 권장)
+                if (!Array.isArray(data)) {
+                     console.warn("서버로부터 배열 형식이 아닌 데이터 수신:", data);
+                     return [];
+                }
+                return data;
+            } catch (error) {
+                console.error('GET 요청 중 오류 발생:', error); // 로그 한국어
+                alert(`네트워크 오류: ${error.message}. 서버 연결을 확인하세요.`); // 알림 한국어
+                return [];
+            } finally {
+                showLoading(false); // 로딩 표시 숨기기
+            }
+        }
+
+        // 단일 픽셀 그리기 (init에서 사용)
+        function pixel(x, y, color) {
+            // 데이터 유효성 검사 추가
+            if (typeof x !== 'number' || typeof y !== 'number' || typeof color !== 'string') {
+                 console.warn("Invalid pixel data for drawing:", {x, y, color});
+                 return;
+            }
+            ctx.fillStyle = color;
+            ctx.fillRect(x, y, pixelSize, pixelSize);
+        }
+
+
+        // 서버 데이터로 캔버스 초기화
+        async function init() {
+            console.log("캔버스 초기화 중..."); // 로그 한국어
+            const data = await get(); // 서버에서 데이터 가져오기
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // 캔버스 지우기
+            if (data && Array.isArray(data)) {
+                 // 데이터 항목별 유효성 검사 후 그리기
+                 data.forEach(item => {
+                     if (item && typeof item.x === 'number' && typeof item.y === 'number' && typeof item.color === 'string') {
+                         pixel(item.x, item.y, item.color);
+                     } else {
+                         console.warn("Invalid item in server data:", item);
+                     }
+                 });
+            } else {
+                console.warn("서버로부터 유효하지 않은 데이터 수신:", data); // 로그 한국어
+            }
+            history = []; // 로컬 Undo 기록 초기화
+            console.log("캔버스 초기화 완료."); // 로그 한국어
+        }
+
+        // 캔버스 초기화 (로컬 및 서버)
+        async function resetCanvas() {
+            // 사용자 확인
+            if (!confirm("정말로 캔버스를 초기화하시겠습니까? 모든 그림이 삭제됩니다.")) { // 확인창 한국어
+                 return;
+            }
+
+            console.log("캔버스 초기화 요청 중..."); // 로그 한국어
+            showLoading(true);
+            try {
+                // 서버에 초기화 요청 보내기
+                const response = await fetch(`${serverUrl}/reset`, { method: 'POST' });
+                if (!response.ok) {
+                    console.error('서버 초기화 실패:', response.status, response.statusText); // 로그 한국어
+                    alert(`서버 데이터 초기화 실패: ${response.statusText}`); // 알림 한국어
+                } else {
+                     console.log("서버 데이터 초기화 성공."); // 로그 한국어
+                     // 서버 초기화 성공 시 로컬 캔버스 및 기록 지우기
+                     ctx.clearRect(0, 0, canvas.width, canvas.height);
+                     history = [];
+                     console.log("로컬 캔버스 초기화 완료."); // 로그 한국어
+                }
+            } catch (error) {
+                console.error('서버 초기화 요청 중 오류 발생:', error); // 로그 한국어
+                alert(`네트워크 오류: ${error.message}`); // 알림 한국어
+            } finally {
+                 showLoading(false);
+            }
+        }
+
+        // 로딩 표시 보이기/숨기기
+        function showLoading(isLoading) {
+            loadingIndicator.style.display = isLoading ? 'block' : 'none';
+        }
+
+        // --- Event Listeners ---
+
+        // 마우스 그리기 이벤트
+        canvas.addEventListener("mousedown", (event) => {
+            isDrawing = true;
+            saveCanvasState(); // 그리기 시작 전 상태 저장 (Undo용)
+            fill(event); // 첫 픽셀 즉시 그리기
+        });
+        canvas.addEventListener("mousemove", (event) => {
+            if (isDrawing) {
+                fill(event);
+            }
+        });
+        canvas.addEventListener("mouseup", () => { if (isDrawing) isDrawing = false; });
+        canvas.addEventListener("mouseleave", () => { if (isDrawing) isDrawing = false; });
+
+        // 터치 그리기 이벤트
+        canvas.addEventListener("touchstart", (event) => {
+            if (event.touches.length > 0) { // Ensure touches exist
+                isDrawing = true;
+                saveCanvasState();
+                fill(event);
+                event.preventDefault();
+            }
+        }, { passive: false });
+
+        canvas.addEventListener("touchmove", (event) => {
+             if (event.touches.length > 0 && isDrawing) { // Ensure touches exist
+                fill(event);
+                event.preventDefault();
+            }
+        }, { passive: false });
+
+        canvas.addEventListener("touchend", () => { if (isDrawing) isDrawing = false; });
+        canvas.addEventListener("touchcancel", () => { if (isDrawing) isDrawing = false; });
+
+        // 컨트롤 버튼 이벤트
+        if (resetButtonElement) {
+            resetButtonElement.addEventListener("click", resetCanvas);
+        }
+        if (backButtonElement) {
+            backButtonElement.addEventListener("click", restoreCanvasState);
+        }
+
+        // --- Initialization ---
+        window.onload = () => {
+            console.log("페이지 로드 완료."); // 로그 한국어
+            // 캔버스 크기 설정
+            canvas.width = canvasWidth;
+            canvas.height = canvasHeight;
+
+            initializeColorPalette(); // 색상 버튼 생성
+            init(); // 초기 캔버스 데이터 로드 및 그리기
+
+            console.log("초기화 완료. 그림을 그릴 준비가 되었습니다!"); // 로그 한국어
+        };
+
+    </script>
 </body>
 </html>
